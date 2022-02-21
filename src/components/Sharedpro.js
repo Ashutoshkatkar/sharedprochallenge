@@ -9,15 +9,33 @@ function Sharedpro() {
 
     const subm = (e) => {
         e.preventDefault()
+        var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+        var passwdformat = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
+        var phoneno = /^[789]\d{9}$/;
         if (name.length == 0 || email.length == 0 || password.length == 0 || city.length == 0 || phno.length == 0) {
             alert('please fill all details')
         } else {
-            alert("form submitted sucessfully!!")
-            setName("");
-            setEmail("")
-            setCity("")
-            setPassword("")
-            setPhno("")
+            if (email.match(mailformat)) {
+                if (password.match(passwdformat)) {
+                    if (phno.match(phoneno)) {
+                        alert("form submitted sucessfully!!")
+                        setName("");
+                        setEmail("")
+                        setCity("")
+                        setPassword("")
+                        setPhno("")
+                    } else {
+                        alert("Invalid phone number!")
+                    }
+
+                } else {
+                    alert("Password must have Minimum eight characters, at least one uppercase letter, one lowercase letter and one number")
+                }
+
+            } else {
+                alert("Invalid Email!");
+            }
+
         }
         //alert(`name is ${name} and email ${email} ${city}`)
 
